@@ -34,7 +34,7 @@ public:
    }
 
 // Copy constructor
-   Matris(const Matris<T>& rhs): m_rows(rhs.m_rows), m_cols(rhs.m_cols), m_capacity(rhs.m_capacity){//
+   Matris(const Matris<T>& rhs): m_rows(rhs.m_rows), m_cols(rhs.m_cols), m_capacity(rhs.m_capacity){
      if (m_vec != nullptr){
        delete [] m_vec;
      }
@@ -48,7 +48,7 @@ public:
    virtual ~Matris() {delete [] m_vec;}
 
  //Move constructor
-   Matris(Matris<T>&& other): m_rows(other.m_rows),m_cols(other.m_cols),m_capacity(other.m_capacity){ //
+   Matris(Matris<T>&& other): m_rows(other.m_rows),m_cols(other.m_cols),m_capacity(other.m_capacity){
      for (int i=0; i<m_capacity; i++) {
        m_vec[i] = other.m_vec[i];
      }
@@ -57,42 +57,42 @@ public:
    }
 
 //Move assignment
-   Matris<T>& operator=(Matris<T>&& right); //
+   Matris<T>& operator=(Matris<T>&& right);
 
 //Copy-assignment
-   Matris<T>& operator=(const Matris<T>& right); //
+   Matris<T>& operator=(const Matris<T>& right);
 
-   // Mathemathical matrix operations
-   Matris<T>& operator+=(const Matris<T>& right); //
-   Matris<T>& operator-=(const Matris<T>& right);//
-   Matris<T>& operator*=(const Matris<T>& right);//
-   Matris<T> operator+(const Matris<T>& right);//
-   Matris<T> operator-(const Matris<T>& right);//
-   Matris<T> operator*(const Matris<T>& right);//
+   // Mathemathical matrix operation
+   Matris<T>& operator+=(const Matris<T>& right);
+   Matris<T>& operator-=(const Matris<T>& right);
+   Matris<T>& operator*=(const Matris<T>& right);
+   Matris<T> operator+(const Matris<T>& right);
+   Matris<T> operator-(const Matris<T>& right);
+   Matris<T> operator*(const Matris<T>& right);
    //Scalar operations
-   Matris<T> operator*(const T& right);//
-   Matris<T> operator+(const T& right);//
-   Matris<T> operator-(const T& right);//
+   Matris<T> operator*(const T& right);
+   Matris<T> operator+(const T& right);
+   Matris<T> operator-(const T& right);
 
    // Accessors
-   T& operator()(const int& col, const int& row);
-   T& operator()(const int& col, const int& row) const;
+   T& operator()(const int& row, const int& col);
+   T& operator()(const int& row, const int& col) const;
 
    // Other useful methods
    void reset();//
-   void insert_row(int position);//
-   void append_row(int position);//
-   void remove_row(int position);//
-   void insert_column(int position);//
-   void append_column(int position);//
-   void remove_column(int position);//
+   void insert_row(int position);
+   void append_row(int position);
+   void remove_row(int position);
+   void insert_column(int position);
+   void append_column(int position);
+   void remove_column(int position);
 
-   void transpose();//
+   void transpose();
    T * begin();
    auto * end();
 
-  int rows() const; //
-  int cols() const;//
+  int rows() const;
+  int cols() const;
 
 private:
    int m_rows=0;
@@ -128,7 +128,7 @@ Matris<T>& Matris<T>::operator=(const Matris<T>& right){//
 }
 // move-assignment
 template <class T>
-Matris<T>& Matris<T>::operator=(Matris<T>&& right){// move assignment
+Matris<T>& Matris<T>::operator=(Matris<T>&& right){
   if (&right == this){
      return *this;}
    int new_rows = right.rows();
@@ -152,7 +152,6 @@ Matris<T>& Matris<T>::operator=(Matris<T>&& right){// move assignment
 }
 
 //Matrix/scalar operations
-
 template <class T>
 Matris<T>& Matris<T>::operator+=(const Matris<T>& right){
     int rows = right.rows();
@@ -173,7 +172,6 @@ Matris<T>& Matris<T>::operator-=(const Matris<T>& right){
   int rows = right.rows();
   int cols = right.cols();
   T temp;
-
   for (int i=0; i<rows; i++) {
     for (int j=0; j<cols; j++) {
       int index=(i*cols) + j;
@@ -342,6 +340,7 @@ void Matris<T>::remove_row(int position){
       }
     }
 }
+
 template <class T>
 void Matris<T>::insert_column(int position){
   transpose();
